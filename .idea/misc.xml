@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Sandbox/kittygram/app/src/main/res/drawable/ic_favorite.xml" value="0.136" />
         <entry key="..\:/Sandbox/kittygram/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Sandbox/kittygram/app/src/main/res/layout/fragment_dashboard.xml" value="0.24954710144927536" />
         <entry key="..\:/Sandbox/kittygram/app/src/main/res/menu/bottom_nav_menu.xml" value="0.27291666666666664" />
