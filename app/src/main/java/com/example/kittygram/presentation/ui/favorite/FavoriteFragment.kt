@@ -12,10 +12,8 @@ import com.example.kittygram.databinding.FragmentFavoriteBinding
 class FavoriteFragment : Fragment() {
 
     private var _binding: FragmentFavoriteBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private val binding
+    get() = requireNotNull(_binding)
 
     override fun onCreateView(
         inflater: LayoutInflater,
