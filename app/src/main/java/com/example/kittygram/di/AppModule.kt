@@ -12,7 +12,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
@@ -31,7 +30,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(baseUrl : String): CatsService =
+    fun provideRetrofit(baseUrl: String): CatsService =
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(okHttpClient())
