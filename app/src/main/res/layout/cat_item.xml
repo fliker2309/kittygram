@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:civ_border_color="@color/teal_200"
+        app:civ_border_width="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+
+    <TextView
+        android:id="@+id/cat_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="28sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@id/profile_image"
+        app:layout_constraintStart_toEndOf="@id/profile_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="CatId" />
+
+    <ImageView
+        android:id="@+id/cat_image"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_image"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/like_btn"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_favorite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cat_image" />
+
+    <ImageView
+        android:id="@+id/download_btn"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_download"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cat_image" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="download_btn,like_btn"
+        app:barrierDirection="bottom"/>
+
+    <Space
+        android:layout_height="6dp"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/barrier"
+
+</androidx.constraintlayout.widget.ConstraintLayout>
