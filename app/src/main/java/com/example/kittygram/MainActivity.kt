@@ -1,14 +1,16 @@
 package com.example.kittygram
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.kittygram.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -20,14 +22,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.fragment_splash)
-        Handler(Looper.myLooper()!!).postDelayed({
+
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(3000)
+            _binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding.root)
             val navView: BottomNavigationView = binding.navView
             val navController = findNavController(R.id.nav_host_fragment_activity_main)
             navView.setupWithNavController(navController)
-        }, 3000)
+        }
     }
 
     override fun onDestroy() {

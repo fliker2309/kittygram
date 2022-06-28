@@ -1,3 +1,3 @@
 package com.example.kittygram.data.model
 
-class CatsResponse : ArrayList<CatsResponseItem>()
+class CatsResponse : ArrayList<Cat>()
