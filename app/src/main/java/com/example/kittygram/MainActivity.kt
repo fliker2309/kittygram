@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.fragment_splash)
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(3000)
+            delay(2000)
             _binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding.root)
             val navView: BottomNavigationView = binding.navView

@@ -1,12 +1,8 @@
 package com.example.kittygram.data.db
 
 import android.content.Context
-import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.kittygram.data.model.Cat
-
-
 
 abstract class CatDatabase : RoomDatabase() {
     abstract fun catDao(): CatDao

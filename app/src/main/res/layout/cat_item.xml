@@ -15,13 +15,13 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
-
     <TextView
         android:id="@+id/cat_id"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textSize="28sp"
+        android:fontFamily="@font/arialroundedmtbold"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@id/profile_image"
         app:layout_constraintStart_toEndOf="@id/profile_image"
@@ -60,12 +60,12 @@
         android:id="@+id/barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="download_btn,like_btn"
-        app:barrierDirection="bottom"/>
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="download_btn,like_btn" />
 
     <Space
-        android:layout_height="6dp"
         android:layout_width="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/barrier"
+        android:layout_height="6dp"
+        app:layout_constraintTop_toBottomOf="@id/barrier" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
