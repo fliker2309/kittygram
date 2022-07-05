@@ -1,6 +1,8 @@
 package com.example.kittygram.presentation.ui.home
 
+import android.Manifest
 import android.content.ContentValues
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
@@ -14,13 +16,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import coil.Coil
 import coil.ImageLoader
 import coil.request.ImageRequest
+import com.example.kittygram.data.model.Cat
 import com.example.kittygram.databinding.FragmentHomeBinding
+import com.example.kittygram.presentation.ui.home.adapter.CatActionListener
 import com.example.kittygram.presentation.ui.home.adapter.HomeAdapter
 import com.example.kittygram.utils.Constants.Companion.MIME_TYPE
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,13 +55,25 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        setPermissionCallback()
+        imageLoader = Coil.imageLoader(requireContext())
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        adapter = HomeAdapter(object : CatActionListener {
+            override fun onCatDownload(cat: Cat) {
+                getBitmapFromUrl(cat.url)
+            }
+
+            override fun onCatLike(cat: Cat) {
+                //TODO: implement add to favorite
+                Toast.makeText(requireContext(), "onLikeClick ${cat.url}", Toast.LENGTH_SHORT).show()
+            }
+        })
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
     }
 
     override fun onDestroyView() {
@@ -93,11 +111,13 @@ class HomeFragment : Fragment() {
                     put(MediaStore.Images.Media.MIME_TYPE, MIME_TYPE)
                     put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
                 }
-                val imageUri: Uri? = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+                val imageUri: Uri? =
+                    resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
                 fos = imageUri?.let { resolver.openOutputStream(it) }
             }
         } else {
-            val imageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            val imageDir =
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
             val image = File(imageDir, fileName)
             fos = FileOutputStream(image)
         }
@@ -121,6 +141,28 @@ class HomeFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
             Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun checkPermissionAndDownloadBitmap(bitmapUrl: String) {
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                getBitmapFromUrl(bitmapUrl)
+            }
+            shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE) -> {
+                Toast.makeText(
+                    requireContext(),
+                    "Permission is needed to save image",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+            }
+            else -> {
+                requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
         }
     }
 }
