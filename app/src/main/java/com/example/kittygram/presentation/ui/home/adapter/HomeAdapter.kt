@@ -3,50 +3,44 @@ package com.example.kittygram.presentation.ui.home.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
+import androidx.paging.PagingDataAdapter
 import com.example.kittygram.R
 import com.example.kittygram.data.model.Cat
+import com.example.kittygram.databinding.CatItemBinding
 
-class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
-
-    inner class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view)
-
-    private val callback = object : DiffUtil.ItemCallback<Cat>() {
-        override fun areItemsTheSame(oldItem: Cat, newItem: Cat): Boolean {
-            return oldItem.id == newItem.id
+class HomeAdapter(private val actionListener: CatActionListener) :
+    PagingDataAdapter<Cat, HomeViewHolder>(HomeViewHolder.HomeFragmentDiffItemCallback),
+    View.OnClickListener {
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+        val item = getItem(position)
+        with(holder.binding) {
+            likeBtn.tag = item
+            downloadBtn.tag = item
         }
-
-        override fun areContentsTheSame(oldItem: Cat, newItem: Cat): Boolean {
-            return oldItem == newItem
-        }
+        item?.let { holder.bind(it) }
     }
-    val differ = AsyncListDiffer(this, callback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        return HomeViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.cat_item, parent, false
-            )
-        )
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = CatItemBinding.inflate(inflater, parent, false)
+
+        binding.likeBtn.setOnClickListener(this)
+        binding.downloadBtn.setOnClickListener(this)
+
+        return HomeViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        val cat = differ.currentList[position]
-        holder.itemView.apply {
-
-
+    override fun onClick(v: View) {
+        val cat = v.tag as Cat
+        when (v.id) {
+            R.id.like_btn -> {
+                cat.isLiked = !cat.isLiked
+                actionListener.onCatLike(cat)
+                v.setBackgroundResource(if (cat.isLiked) R.drawable.ic_heart_filled else R.drawable.ic_heart_outline)
+            }
+            R.id.download_btn -> {
+                actionListener.onCatDownload(cat)
+            }
         }
-    }
-
-    override fun getItemCount(): Int {
-        return differ.currentList.size
-    }
-
-    private var onCatClickListener: ((Cat) -> Unit)? = null
-
-    fun setOnCatClickListener(listener: (Cat) -> Unit) {
-        onCatClickListener = listener
     }
 }

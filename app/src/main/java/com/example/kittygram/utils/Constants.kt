@@ -6,5 +6,6 @@ class Constants {
         const val API_KEY = "a3239555-704c-4dd2-8c99-62c5d72aae28"
         const val IMAGE_ENDPOINT = "images/search"
         const val DEFAULT_PAGE_SIZE = 20
+        const val MIME_TYPE = "image/jpeg"
     }
 }
