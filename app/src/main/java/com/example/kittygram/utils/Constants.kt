@@ -1,5 +1,7 @@
 package com.example.kittygram.utils
 
+import kotlinx.serialization.json.Json
+
 class Constants {
     companion object {
         const val BASE_URL = "https://api.thecatapi.com/v1/"
@@ -8,5 +10,7 @@ class Constants {
         const val DEFAULT_PAGE_SIZE = 20
         const val MIME_TYPE = "image/jpeg"
         const val AUTHORIZATION_HEADER = "Authorization"
+
+
     }
 }
