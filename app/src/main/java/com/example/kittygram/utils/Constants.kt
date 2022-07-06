@@ -7,5 +7,6 @@ class Constants {
         const val IMAGE_ENDPOINT = "images/search"
         const val DEFAULT_PAGE_SIZE = 20
         const val MIME_TYPE = "image/jpeg"
+        const val AUTHORIZATION_HEADER = "Authorization"
     }
 }

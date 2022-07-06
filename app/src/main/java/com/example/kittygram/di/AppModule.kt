@@ -9,7 +9,6 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -34,7 +33,7 @@ object AppModule {
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(okHttpClient())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(json.)
             .build()
             .create(CatsService::class.java)
 }

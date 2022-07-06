@@ -5,6 +5,7 @@ import androidx.paging.PagingState
 import com.example.kittygram.domain.model.Cat
 
 private const val CATS_STARTING_PAGE_INDEX = 1
+/*
 
 class CatsPagingSource(private val catsService: CatsService) : PagingSource<Int, Cat>() {
     override fun getRefreshKey(state: PagingState<Int, Cat>): Int? {
@@ -18,9 +19,10 @@ class CatsPagingSource(private val catsService: CatsService) : PagingSource<Int,
        return try {
            val position = params.key ?: CATS_STARTING_PAGE_INDEX
            val response = catsService.getCats(position, params.loadSize)
-          return  LoadResult.Page(
-              data = response.body()
-          )
+        if (response.isSuccessful){,
+            checkNotNull(response.body()).
+        }
        }
     }
 }
+*/
