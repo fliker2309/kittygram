@@ -2,7 +2,7 @@ package com.example.kittygram.data.network
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.kittygram.data.model.Cat
+import com.example.kittygram.domain.model.Cat
 
 private const val CATS_STARTING_PAGE_INDEX = 1
 

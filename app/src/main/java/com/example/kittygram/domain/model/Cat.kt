@@ -1,4 +1,4 @@
-package com.example.kittygram.data.model
+package com.example.kittygram.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

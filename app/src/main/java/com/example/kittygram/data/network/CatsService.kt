@@ -1,6 +1,6 @@
 package com.example.kittygram.data.network
 
-import com.example.kittygram.data.model.Cat
+import com.example.kittygram.domain.model.Cat
 import com.example.kittygram.utils.Constants.Companion.DEFAULT_PAGE_SIZE
 import retrofit2.Response
 import retrofit2.http.GET

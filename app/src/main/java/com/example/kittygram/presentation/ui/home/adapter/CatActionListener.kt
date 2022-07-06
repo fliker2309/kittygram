@@ -1,6 +1,6 @@
 package com.example.kittygram.presentation.ui.home.adapter
 
-import com.example.kittygram.data.model.Cat
+import com.example.kittygram.domain.model.Cat
 
 interface CatActionListener {
 

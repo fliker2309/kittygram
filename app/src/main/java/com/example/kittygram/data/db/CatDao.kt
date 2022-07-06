@@ -2,13 +2,14 @@ package com.example.kittygram.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.kittygram.data.model.Cat
+import com.example.kittygram.domain.model.Cat
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CatDao {
 
     @Query("SELECT * FROM cats")
-    suspend fun getAllCats(): LiveData<List<Cat>>
+    suspend fun getAllCats(): Flow<List<Cat>>
 
     @Query("SELECT * FROM cats WHERE id = :id")
     suspend fun getCat(id: String): Cat?

@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import coil.Coil
 import coil.ImageLoader
 import coil.request.ImageRequest
-import com.example.kittygram.data.model.Cat
+import com.example.kittygram.domain.model.Cat
 import com.example.kittygram.databinding.FragmentHomeBinding
 import com.example.kittygram.presentation.ui.home.adapter.CatActionListener
 import com.example.kittygram.presentation.ui.home.adapter.HomeAdapter

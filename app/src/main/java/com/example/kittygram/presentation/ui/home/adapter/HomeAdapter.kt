@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import com.example.kittygram.R
-import com.example.kittygram.data.model.Cat
+import com.example.kittygram.domain.model.Cat
 import com.example.kittygram.databinding.CatItemBinding
 
 class HomeAdapter(private val actionListener: CatActionListener) :

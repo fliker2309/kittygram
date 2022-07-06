@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.example.kittygram.R
-import com.example.kittygram.data.model.Cat
+import com.example.kittygram.domain.model.Cat
 import com.example.kittygram.databinding.CatItemBinding
 
 class HomeViewHolder(val binding: CatItemBinding) : RecyclerView.ViewHolder(binding.root) {
