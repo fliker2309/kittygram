@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
 
             override fun onCatLike(cat: Cat) {
                 //TODO: implement add to favorite
-                Toast.makeText(requireContext(), "onLikeClick ${cat.id}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "onLikeClick ${cat.url}", Toast.LENGTH_SHORT).show()
             }
         })
         return binding.root
