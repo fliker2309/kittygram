@@ -17,15 +17,21 @@ class HomeViewModel @Inject constructor(private val catsUseCases: CatsUseCases) 
     val allCats: LiveData<Cat>
         get() = _allCats
 
-    private fun saveCatToFavorites(cat: Cat) {
+     fun saveCatToFavorites(cat: Cat) {
         viewModelScope.launch {
             catsUseCases.saveCatToFavorite(cat)
         }
     }
 
-    private fun removeCatFromFavorites(cat: Cat) {
+     fun removeCatFromFavorites(cat: Cat) {
         viewModelScope.launch {
             catsUseCases.removeCatFromFavorite(cat)
         }
     }
+    //todo read how to get cat from usecase
+  /*  fun getAllCats() {
+        viewModelScope.launch {
+            _allCats.value = catsUseCases.getCatsFromNetwork()
+        }
+    }*/
 }
