@@ -3,10 +3,7 @@ package com.example.kittygram.di
 import com.example.kittygram.data.network.AuthInterceptor
 import com.example.kittygram.data.network.CatsService
 import com.example.kittygram.domain.repository.CatRepository
-import com.example.kittygram.domain.usecase.CatsUseCases
-import com.example.kittygram.domain.usecase.GetCatById
-import com.example.kittygram.domain.usecase.GetCats
-import com.example.kittygram.domain.usecase.RemoveCat
+import com.example.kittygram.domain.usecase.*
 import com.example.kittygram.utils.Constants.Companion.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -63,7 +60,9 @@ object AppModule {
             getCats = GetCats(repository),
             getCatById = GetCatById(repository),
             removeCatFromFavorite = RemoveCat(repository),
-            //todo add more use cases
+            saveCatToFavorite = SaveCat(repository)
         )
     }
+
+
 }
