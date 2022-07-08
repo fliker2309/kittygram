@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 interface CatDao {
 
     @Query("SELECT * FROM cats")
-    suspend fun getAllCats(): Flow<List<Cat>>
+    fun getAllCats(): Flow<List<Cat>>
 
     @Query("SELECT * FROM cats WHERE id = :id")
     suspend fun getCat(id: String): Cat?

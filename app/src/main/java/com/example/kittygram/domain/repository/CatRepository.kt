@@ -4,7 +4,7 @@ import com.example.kittygram.domain.model.Cat
 import kotlinx.coroutines.flow.Flow
 
 interface CatRepository {
-    suspend fun getCats(
+    fun getCats(
         page: Int,
         pageSize: Int
     ): Flow<List<Cat>>

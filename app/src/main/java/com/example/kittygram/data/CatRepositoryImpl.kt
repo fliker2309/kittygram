@@ -6,7 +6,7 @@ import com.example.kittygram.domain.repository.CatRepository
 import kotlinx.coroutines.flow.Flow
 
 class CatRepositoryImpl(private val dao: CatDao) : CatRepository {
-    override suspend fun getCats(page: Int, pageSize: Int): Flow<List<Cat>> {
+    override  fun getCats(page: Int, pageSize: Int): Flow<List<Cat>> {
         return dao.getAllCats()
     }
 

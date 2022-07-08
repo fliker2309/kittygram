@@ -1,5 +1,9 @@
 package com.example.kittygram.di
 
+import android.app.Application
+import androidx.room.Room
+import com.example.kittygram.data.CatRepositoryImpl
+import com.example.kittygram.data.db.CatDatabase
 import com.example.kittygram.data.network.AuthInterceptor
 import com.example.kittygram.data.network.CatsService
 import com.example.kittygram.domain.repository.CatRepository
@@ -64,5 +68,19 @@ object AppModule {
         )
     }
 
+    @Provides
+    @Singleton
+    fun provideDatabase(app:Application) :CatDatabase {
+        return Room.databaseBuilder(
+            app,
+            CatDatabase::class.java,
+            CatDatabase.DATABASE_NAME
+        ).build()
+    }
 
+    @Provides
+    @Singleton
+    fun provideCatRepository(database: CatDatabase) : CatRepository {
+        return CatRepositoryImpl(database.catDao())
+    }
 }
