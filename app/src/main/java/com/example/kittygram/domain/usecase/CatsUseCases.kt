@@ -5,4 +5,5 @@ data class CatsUseCases(
     val getCatById: GetCatById,
     val saveCatToFavorite: SaveCat,
     val removeCatFromFavorite: RemoveCat,
+    val getCatsFromNetwork: GetCatsFromNetwork
 )

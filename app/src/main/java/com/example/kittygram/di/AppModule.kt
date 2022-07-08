@@ -59,18 +59,19 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCatsUseCases(repository: CatRepository) : CatsUseCases{
+    fun provideCatsUseCases(repository: CatRepository, service: CatsService): CatsUseCases {
         return CatsUseCases(
             getCats = GetCats(repository),
             getCatById = GetCatById(repository),
             removeCatFromFavorite = RemoveCat(repository),
-            saveCatToFavorite = SaveCat(repository)
+            saveCatToFavorite = SaveCat(repository),
+            getCatsFromNetwork = GetCatsFromNetwork(service),
         )
     }
 
     @Provides
     @Singleton
-    fun provideDatabase(app:Application) :CatDatabase {
+    fun provideDatabase(app: Application): CatDatabase {
         return Room.databaseBuilder(
             app,
             CatDatabase::class.java,
@@ -80,7 +81,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCatRepository(database: CatDatabase) : CatRepository {
+    fun provideCatRepository(database: CatDatabase): CatRepository {
         return CatRepositoryImpl(database.catDao())
     }
 }
