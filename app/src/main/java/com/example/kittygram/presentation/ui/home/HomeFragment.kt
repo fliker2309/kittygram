@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,16 +21,19 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import coil.Coil
 import coil.ImageLoader
 import coil.request.ImageRequest
-import com.example.kittygram.domain.model.Cat
 import com.example.kittygram.databinding.FragmentHomeBinding
+import com.example.kittygram.domain.model.Cat
 import com.example.kittygram.presentation.ui.home.adapter.CatActionListener
 import com.example.kittygram.presentation.ui.home.adapter.HomeAdapter
 import com.example.kittygram.utils.Constants.Companion.MIME_TYPE
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
@@ -64,8 +68,9 @@ class HomeFragment : Fragment() {
             }
 
             override fun onCatLike(cat: Cat) {
-                //TODO: implement add to favorite
-                Toast.makeText(requireContext(), "onLikeClick ${cat.url}", Toast.LENGTH_SHORT).show()
+                // TODO: implement add to favorite
+                Toast.makeText(requireContext(), "onLikeClick ${cat.url}", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
         return binding.root
@@ -74,6 +79,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        initObservers()
     }
 
     override fun onDestroyView() {
@@ -86,6 +92,23 @@ class HomeFragment : Fragment() {
             catRV.adapter = adapter
             catRV.layoutManager =
                 GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
+        }
+    }
+
+    private fun initObservers() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.flow.collectLatest { pagingData: PagingData<Cat> ->
+                adapter.submitData(pagingData)
+                Log.d("tag", "pagingData: $pagingData")
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            adapter.loadStateFlow.collectLatest {
+                if (it.append is LoadState.Error) {
+                    adapter.retry()
+                }
+            }
         }
     }
 

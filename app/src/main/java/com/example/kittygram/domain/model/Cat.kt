@@ -7,9 +7,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "cats")
 data class Cat(
     @PrimaryKey
-    @ColumnInfo(name = "Id")
+    @ColumnInfo(name = "id")
     val id: String,
-    @ColumnInfo(name = "ImageUrl")
+    @ColumnInfo(name = "imageUrl")
     val url: String
 ) {
     var isLiked: Boolean = false

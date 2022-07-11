@@ -32,7 +32,7 @@ class CatsPagingSource @Inject constructor(private val service: CatsService) :
         } catch (exception: IOException) {
             return LoadResult.Error(exception)
         } catch (exception: Exception) {
-            throw IOException(exception)
+            return LoadResult.Error(exception)
         }
     }
 }

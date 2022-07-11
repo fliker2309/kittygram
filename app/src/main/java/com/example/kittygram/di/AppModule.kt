@@ -41,6 +41,7 @@ object AppModule {
     @Provides
     fun contentType() = "application/json".toMediaType()
 
+    @Singleton
     @Provides
     fun json() = Json {
         prettyPrint = true

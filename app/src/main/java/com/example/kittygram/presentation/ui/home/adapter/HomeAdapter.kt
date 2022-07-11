@@ -5,10 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import com.example.kittygram.R
-import com.example.kittygram.domain.model.Cat
 import com.example.kittygram.databinding.CatItemBinding
+import com.example.kittygram.domain.model.Cat
 
-class HomeAdapter(private val actionListener: CatActionListener) :
+class HomeAdapter(
+    private val actionListener: CatActionListener
+) :
     PagingDataAdapter<Cat, HomeViewHolder>(HomeViewHolder.HomeFragmentDiffItemCallback),
     View.OnClickListener {
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
