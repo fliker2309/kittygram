@@ -97,8 +97,10 @@ class HomeFragment : Fragment() {
 
     private fun initObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
+            Log.d("tag", "initObservers")
             viewModel.flow.collectLatest { pagingData: PagingData<Cat> ->
                 adapter.submitData(pagingData)
+                Log.d("tag", "success adapter")
                 Log.d("tag", "pagingData: $pagingData")
             }
         }
@@ -107,7 +109,7 @@ class HomeFragment : Fragment() {
             adapter.loadStateFlow.collectLatest {
                 if (it.append is LoadState.Error) {
                     adapter.retry()
-                }
+                } else  Log.d("tag", "loadStateFlow: $it")
             }
         }
     }
