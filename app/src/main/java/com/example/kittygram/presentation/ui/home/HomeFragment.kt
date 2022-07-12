@@ -64,13 +64,13 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         adapter = HomeAdapter(object : CatActionListener {
             override fun onCatDownload(cat: Cat) {
-                getBitmapFromUrl(cat.url)
+                /*   getBitmapFromUrl(cat.url)*/ // todo: implement this
             }
 
             override fun onCatLike(cat: Cat) {
                 // TODO: implement add to favorite
-                Toast.makeText(requireContext(), "onLikeClick ${cat.url}", Toast.LENGTH_SHORT)
-                    .show()
+                /*  Toast.makeText(requireContext(), "onLikeClick ${cat.url}", Toast.LENGTH_SHORT)
+                      .show()*/
             }
         })
         return binding.root
@@ -97,11 +97,8 @@ class HomeFragment : Fragment() {
 
     private fun initObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
-            Log.d("tag", "initObservers")
             viewModel.flow.collectLatest { pagingData: PagingData<Cat> ->
                 adapter.submitData(pagingData)
-                Log.d("tag", "success adapter")
-                Log.d("tag", "pagingData: $pagingData")
             }
         }
 
@@ -109,7 +106,7 @@ class HomeFragment : Fragment() {
             adapter.loadStateFlow.collectLatest {
                 if (it.append is LoadState.Error) {
                     adapter.retry()
-                } else  Log.d("tag", "loadStateFlow: $it")
+                } else Log.d("tag", "loadStateFlow: $it")
             }
         }
     }

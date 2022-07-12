@@ -5,6 +5,7 @@ import androidx.paging.PagingState
 import com.example.kittygram.data.toCat
 import com.example.kittygram.domain.model.Cat
 import java.io.IOException
+import retrofit2.HttpException
 import javax.inject.Inject
 
 private const val CATS_STARTING_PAGE_INDEX = 1
@@ -19,6 +20,7 @@ class CatsPagingSource @Inject constructor(private val service: CatsService) :
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Cat> {
+
         return try {
             val position = params.key ?: CATS_STARTING_PAGE_INDEX
             val response = service.getCats(position, params.loadSize)
@@ -31,7 +33,7 @@ class CatsPagingSource @Inject constructor(private val service: CatsService) :
             )
         } catch (exception: IOException) {
             return LoadResult.Error(exception)
-        } catch (exception: Exception) {
+        } catch (exception: HttpException) {
             return LoadResult.Error(exception)
         }
     }

@@ -9,16 +9,14 @@ import com.example.kittygram.data.network.CatsService
 import com.example.kittygram.domain.repository.CatRepository
 import com.example.kittygram.domain.usecase.*
 import com.example.kittygram.utils.Constants.Companion.BASE_URL
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -39,22 +37,12 @@ object AppModule {
         .build()
 
     @Provides
-    fun contentType() = "application/json".toMediaType()
-
-    @Singleton
-    @Provides
-    fun json() = Json {
-        prettyPrint = true
-        ignoreUnknownKeys = true
-    }
-
-    @Provides
     @Singleton
     fun provideRetrofit(baseUrl: String): CatsService =
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(okHttpClient())
-            .addConverterFactory(json().asConverterFactory(contentType()))
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(CatsService::class.java)
 
