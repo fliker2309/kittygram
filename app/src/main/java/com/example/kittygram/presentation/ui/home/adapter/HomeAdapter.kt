@@ -38,7 +38,7 @@ class HomeAdapter(
             R.id.like_btn -> {
                 cat.isLiked = !cat.isLiked
                 actionListener.onCatLike(cat)
-                v.setBackgroundResource(if (cat.isLiked) R.drawable.ic_heart_filled else R.drawable.ic_heart_outline)
+                v.setBackgroundResource(if (cat.isLiked) R.drawable.ic_heart_filled else R.drawable.ic_heart_outline) //вынести во фрагмент
             }
             R.id.download_btn -> {
                 actionListener.onCatDownload(cat)

@@ -64,13 +64,14 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         adapter = HomeAdapter(object : CatActionListener {
             override fun onCatDownload(cat: Cat) {
-                /*   getBitmapFromUrl(cat.url)*/ // todo: implement this
+                getBitmapFromUrl(cat.url) // todo: implement this
             }
 
             override fun onCatLike(cat: Cat) {
+                addToFavorite(cat)
                 // TODO: implement add to favorite
-                /*  Toast.makeText(requireContext(), "onLikeClick ${cat.url}", Toast.LENGTH_SHORT)
-                      .show()*/
+                Toast.makeText(requireContext(), "onLikeClick ${cat.url}", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
         return binding.root
@@ -109,6 +110,14 @@ class HomeFragment : Fragment() {
                 } else Log.d("tag", "loadStateFlow: $it")
             }
         }
+    }
+
+    private fun addToFavorite(cat: Cat) {
+        viewModel.saveCatToFavorites(cat)
+    }
+
+    private fun removeFromFavorite(cat: Cat) {
+        viewModel.removeCatFromFavorites(cat)
     }
 
     private fun setPermissionCallback() {
@@ -166,25 +175,4 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun checkPermissionAndDownloadBitmap(bitmapUrl: String) {
-        when {
-            ContextCompat.checkSelfPermission(
-                requireContext(),
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                getBitmapFromUrl(bitmapUrl)
-            }
-            shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE) -> {
-                Toast.makeText(
-                    requireContext(),
-                    "Permission is needed to save image",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            }
-            else -> {
-                requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            }
-        }
-    }
 }
