@@ -7,10 +7,12 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="@dimen/profile_image_size"
+        android:layout_height="@dimen/profile_image_size"
         app:civ_border_color="@color/teal_200"
         app:civ_border_width="2dp"
+        android:layout_marginStart="@dimen/small_dimen"
+        android:layout_marginTop="@dimen/small_dimen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
@@ -19,20 +21,21 @@
         android:id="@+id/profile_name_TV"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:textSize="28sp"
+        android:layout_marginStart="@dimen/small_dimen"
+        android:textSize="@dimen/profile_text_size"
         android:fontFamily="@font/arialroundedmtbold"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@id/profile_image"
         app:layout_constraintStart_toEndOf="@id/profile_image"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="CatId" />
 
     <ImageView
         android:id="@+id/cat_image"
         android:layout_width="match_parent"
         android:layout_height="360dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/small_dimen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_image"
@@ -40,18 +43,18 @@
 
     <ImageView
         android:id="@+id/like_btn"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_margin="8dp"
+        android:layout_width="@dimen/button_size_dimen"
+        android:layout_height="@dimen/button_size_dimen"
+        android:layout_margin="@dimen/small_dimen"
         android:src="@drawable/ic_heart_outline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cat_image" />
 
     <ImageView
         android:id="@+id/download_btn"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_margin="8dp"
+        android:layout_width="@dimen/button_size_dimen"
+        android:layout_height="@dimen/button_size_dimen"
+        android:layout_margin="@dimen/small_dimen"
         android:src="@drawable/ic_download"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cat_image" />
@@ -65,7 +68,7 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="6dp"
+        android:layout_height="@dimen/small_dimen"
         app:layout_constraintTop_toBottomOf="@id/barrier" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
