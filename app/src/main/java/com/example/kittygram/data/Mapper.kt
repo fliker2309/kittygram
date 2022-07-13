@@ -6,6 +6,6 @@ import com.example.kittygram.domain.model.Cat
 internal fun CatDTO.toCat(): Cat {
     return Cat(
         id = id,
-        url = imageUrl
+        url = url
     )
 }

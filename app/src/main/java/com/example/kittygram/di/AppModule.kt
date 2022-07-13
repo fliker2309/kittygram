@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import com.example.kittygram.data.CatRepositoryImpl
 import com.example.kittygram.data.db.CatDatabase
+/*import com.example.kittygram.data.CatRepositoryImpl
+import com.example.kittygram.data.db.CatDatabase*/
 import com.example.kittygram.data.network.AuthInterceptor
 import com.example.kittygram.data.network.CatsService
 import com.example.kittygram.domain.repository.CatRepository

@@ -8,5 +8,5 @@ data class CatDTO(
     @SerialName("id")
     val id: String,
     @SerialName("url")
-    val imageUrl: String
+    val url: String
 )
