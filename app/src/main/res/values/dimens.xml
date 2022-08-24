@@ -1,6 +1,11 @@
 <resources>
     <dimen name="small_dimen">8dp</dimen>
+    <dimen name="small_text_size">12sp</dimen>
+    <dimen name="medium_dimen">16dp</dimen>
+    <dimen name="empty_favorite_text_size">24sp</dimen>
+    <dimen name="profile_text_size">28sp</dimen>
+    <dimen name="like_dimen">32dp</dimen>
     <dimen name="profile_image_size">48dp</dimen>
     <dimen name="button_size_dimen">64dp</dimen>
-    <dimen name="profile_text_size">28sp</dimen>
+
 </resources>
