@@ -3,6 +3,7 @@
     <dimen name="small_text_size">12sp</dimen>
     <dimen name="medium_dimen">16dp</dimen>
     <dimen name="empty_favorite_text_size">24sp</dimen>
+    <dimen name="bottom_dimen">24dp</dimen>
     <dimen name="profile_text_size">28sp</dimen>
     <dimen name="like_dimen">32dp</dimen>
     <dimen name="profile_image_size">48dp</dimen>

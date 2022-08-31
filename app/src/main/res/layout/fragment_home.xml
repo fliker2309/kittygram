@@ -6,16 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.home.HomeFragment">
 
+    <TextView
+        android:id="@+id/tv_Title"
+        style="@style/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/catstagram"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cat_RV"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/medium_dimen"
+        android:layout_height="0dp"
         android:clipToPadding="false"
-        android:paddingBottom="50dp"
+        android:paddingBottom="@dimen/bottom_dimen"
+        android:paddingHorizontal="@dimen/small_dimen"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tv_Title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
