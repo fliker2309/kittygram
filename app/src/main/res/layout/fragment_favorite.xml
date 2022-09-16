@@ -6,20 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.favorite.FavoriteFragment">
 
-    <TextView
-        android:id="@+id/text_favorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/arialroundedmtbold"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        android:text="@string/catstagram"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_favorite_cats"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/medium_dimen"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingHorizontal="@dimen/small_dimen"
+        android:paddingTop="@dimen/small_dimen"
+        android:paddingBottom="@dimen/bottom_dimen"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="16"
+        tools:listitem="@layout/cat_item" />
+
+    <include
+        android:id="@+id/empty_layout"
+        layout="@layout/view_empty_favorites"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/medium_dimen"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 </androidx.constraintlayout.widget.ConstraintLayout>
